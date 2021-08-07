@@ -19,3 +19,26 @@ export const login = (token) => {
     }, API_DELAY);
   });
 };
+
+const queryToUrl = (obj) => {
+  let query = "?";
+  Object.keys(obj).forEach((item) => {
+    query += item + "=" + obj[item] + "&";
+  });
+  return query;
+};
+
+export const getBooks = (query) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await fetch(
+        `https://www.googleapis.com/books/v1/volumes${queryToUrl(query)}`
+      );
+      const json = await data.json();
+      resolve(json);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
