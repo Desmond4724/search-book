@@ -5,14 +5,15 @@
 :root {
   --primary: #111827;
   --danger: #d56a6a;
-  --secondary: #1f2937
+  --secondary: #1f2937;
+  --base-color:#9ca3af;
 }
 
 body {
   padding: 0;
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  color: #fff;
+  color: var(--base-color);
   font-size: 16px;
   background-color: var(--primary);
 }

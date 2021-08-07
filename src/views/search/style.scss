@@ -90,12 +90,13 @@
       border-radius: 8px;
       object-fit: cover;
       position: absolute;
+      left: 10px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
     }
     .search__table__cell-img {
-      padding-right: 50px;
+      width: 80px;
     }
   }
 

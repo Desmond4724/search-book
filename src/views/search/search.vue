@@ -7,9 +7,10 @@
       <div class="search__inner">
         <div class="search__input__wrapper">
           <input
+            ref="searchRefInput"
             @input="search"
             v-model="query"
-            placeholder="Search"
+            placeholder="Search pres(/)"
             type="text"
             class="search__input"
           />
@@ -26,7 +27,9 @@
             <tbody>
               <tr
                 @click="$refs.bookDetailsDialogRef.open(row)"
-                v-for="row in result.items" :key="row.id">
+                v-for="row in result.items"
+                :key="row.id"
+              >
                 <td class="search__table__cell-img">
                   <img
                     v-if="row.images.small"
@@ -52,9 +55,7 @@
       </div>
     </div>
   </div>
-  <BookDetailsDialog
-    ref="bookDetailsDialogRef"
-  ></BookDetailsDialog>
+  <BookDetailsDialog ref="bookDetailsDialogRef"></BookDetailsDialog>
 </template>
 
 <script>
@@ -62,9 +63,28 @@ import "./style.scss";
 import { getBooks } from "@/repository";
 import VPagination from "@/components/ui/VPagination/VPagination";
 import { parseJsonDataFromGoogle } from "@/service/bookService";
-import BookDetailsDialog from "@/components/BookDetailsDialog";
+import BookDetailsDialog from "@/components/search/BookDetailsDialog";
+import { ref } from "vue";
+import useKeyDown from "@/use/useKeydown";
 
 export default {
+  setup() {
+    const searchRefInput = ref(null);
+    const focusToSearchInput = () => {
+      setTimeout(() => {
+        searchRefInput.value.focus();
+      });
+    };
+    useKeyDown([
+      {
+        key: "/",
+        fn: focusToSearchInput,
+      },
+    ]);
+    return {
+      searchRefInput,
+    };
+  },
   components: { BookDetailsDialog, VPagination },
   data() {
     return {
@@ -100,7 +120,7 @@ export default {
         params.startIndex = (this.page - 1) * maxResults;
         let result = parseJsonDataFromGoogle(await getBooks(params));
         this.pageLength = Math.ceil(result.totalItems / maxResults);
-        this.result = result
+        this.result = result;
       } catch (e) {
         console.error(e);
         // todo need to handle the error and show to user
