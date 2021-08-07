@@ -3,7 +3,7 @@
     <div class="login__inner">
       <h2>Login</h2>
       <p class="mb-4">
-Please enter your user token
+        Please enter your user token
       </p>
       <form @submit.prevent="submit" class="login__form">
         <div class="form-controller">
@@ -20,7 +20,7 @@ Please enter your user token
           />
           <span class="message message-error">{{ error }}</span>
         </div>
-        <v-btn class="w-100" :loading="loading">Login</v-btn>
+        <v-btn :loading="loading">Login</v-btn>
       </form>
     </div>
   </div>
@@ -29,6 +29,7 @@ Please enter your user token
 <script>
 import "./style.scss";
 import VBtn from "@/components/ui/VBtn/VBtn";
+import { login } from "@/repository";
 
 export default {
   components: { VBtn },
@@ -41,7 +42,15 @@ export default {
   },
   methods: {
     async submit() {
-
+      this.loading = true;
+      try {
+        await login(this.token);
+        this.$user.setToken(this.token);
+      } catch (e) {
+        this.error = e.message;
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
