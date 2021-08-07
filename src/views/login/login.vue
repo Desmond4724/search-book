@@ -2,9 +2,7 @@
   <div class="login">
     <div class="login__inner">
       <h2>Login</h2>
-      <p class="mb-4">
-        Please enter your user token
-      </p>
+      <p class="mb-4">Please enter your user token</p>
       <form @submit.prevent="submit" class="login__form">
         <div class="form-controller">
           <input

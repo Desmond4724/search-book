@@ -21,4 +21,3 @@ describe("valid token", () => {
     expect(isValidToken(token)).toEqual(true);
   });
 });
-

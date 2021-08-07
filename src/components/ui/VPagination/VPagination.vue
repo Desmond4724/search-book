@@ -1,8 +1,14 @@
 <template>
   <ul class="v-pagination">
     <li v-for="(item, index) in paginationItems" :key="index">
-      <button @click="onInput(item.text)" :class="{active: item.isActive}" v-if="item.isBtn">{{ item.text }}</button>
-      <span v-else>{{item.text}}</span>
+      <button
+        @click="onInput(item.text)"
+        :class="{ active: item.isActive }"
+        v-if="item.isBtn"
+      >
+        {{ item.text }}
+      </button>
+      <span v-else>{{ item.text }}</span>
     </li>
   </ul>
 </template>
@@ -21,8 +27,8 @@ export default {
   },
   methods: {
     onInput(value) {
-      if(this.modelValue !== value) {
-        this.$emit("update:modelValue", value)
+      if (this.modelValue !== value) {
+        this.$emit("update:modelValue", value);
       }
     },
     range(from, to) {
@@ -97,7 +103,6 @@ export default {
       });
     },
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>

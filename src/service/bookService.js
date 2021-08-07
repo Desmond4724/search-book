@@ -17,7 +17,7 @@
  * @returns {Array<Book>}
  */
 const parseBooks = (books) => {
-  if(!books) books = []
+  if (!books) books = [];
   return books.map((item) => {
     const { volumeInfo } = item;
     return {

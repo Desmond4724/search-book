@@ -108,7 +108,7 @@ export default {
       });
     },
     search() {
-      this.page = 1
+      this.page = 1;
       this.getBooks();
     },
 
