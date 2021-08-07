@@ -1,0 +1,22 @@
+.v-pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 1px;
+  justify-content: flex-end;
+  li + li {
+    margin-left: 15px;
+  }
+  button {
+    cursor: pointer;
+    min-width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    &.active {
+      background: #111827;
+      color: #fff;
+      border: 1px solid #fff;
+    }
+  }
+}
