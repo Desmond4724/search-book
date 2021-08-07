@@ -1,3 +1,5 @@
+import { queryToUrl } from "@/pureFunctions";
+
 const API_DELAY = 500;
 
 export const isValidToken = (token) => {
@@ -20,14 +22,10 @@ export const login = (token) => {
   });
 };
 
-const queryToUrl = (obj) => {
-  let query = "?";
-  Object.keys(obj).forEach((item) => {
-    query += item + "=" + obj[item] + "&";
-  });
-  return query;
-};
-
+/**
+ * @param {Object} query
+ * @returns {Promise<unknown>}
+ */
 export const getBooks = (query) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -41,4 +39,3 @@ export const getBooks = (query) => {
     }
   });
 };
-

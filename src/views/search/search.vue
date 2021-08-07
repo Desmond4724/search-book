@@ -27,17 +27,15 @@
               <tr v-for="row in result.items" :key="row.id">
                 <td class="search__table__cell-img">
                   <img
-                    v-if="row.volumeInfo.imageLinks.smallThumbnail"
+                    v-if="row.images.small"
                     class="search__table__img"
-                    :src="row.volumeInfo.imageLinks.smallThumbnail"
+                    :src="row.images.small"
                     alt=""
                   />
                 </td>
-                <td>{{ row.volumeInfo.title }}</td>
+                <td>{{ row.title }}</td>
                 <td>
-                  <span v-if="row.volumeInfo.authors">{{
-                    row.volumeInfo.authors.join(", ")
-                  }}</span>
+                  {{ row.authors.join(", ") }}
                 </td>
               </tr>
             </tbody>
@@ -58,6 +56,7 @@
 import "./style.scss";
 import { getBooks } from "@/repository";
 import VPagination from "@/components/ui/VPagination/VPagination";
+import { parseJsonDataFromGoogle } from "@/service/bookService";
 
 export default {
   components: { VPagination },
@@ -93,9 +92,9 @@ export default {
           maxResults,
         };
         params.startIndex = (this.page - 1) * maxResults;
-
-        this.result = await getBooks(params);
-        this.pageLength = Math.ceil(this.result.totalItems / maxResults);
+        let result = parseJsonDataFromGoogle(await getBooks(params));
+        this.pageLength = Math.ceil(result.totalItems / maxResults);
+        this.result = result
       } catch (e) {
         console.error(e);
         // todo need to handle the error and show to user
@@ -105,7 +104,7 @@ export default {
     },
   },
   created() {
-    this.getBooks()
+    this.getBooks();
   },
 };
 </script>
