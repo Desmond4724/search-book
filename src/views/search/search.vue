@@ -24,7 +24,9 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="row in result.items" :key="row.id">
+              <tr
+                @click="$refs.bookDetailsDialogRef.open(row)"
+                v-for="row in result.items" :key="row.id">
                 <td class="search__table__cell-img">
                   <img
                     v-if="row.images.small"
@@ -35,7 +37,7 @@
                 </td>
                 <td>{{ row.title }}</td>
                 <td>
-                  {{ row.authors.join(", ") }}
+                  {{ row.authors }}
                 </td>
               </tr>
             </tbody>
@@ -50,6 +52,9 @@
       </div>
     </div>
   </div>
+  <BookDetailsDialog
+    ref="bookDetailsDialogRef"
+  ></BookDetailsDialog>
 </template>
 
 <script>
@@ -57,9 +62,10 @@ import "./style.scss";
 import { getBooks } from "@/repository";
 import VPagination from "@/components/ui/VPagination/VPagination";
 import { parseJsonDataFromGoogle } from "@/service/bookService";
+import BookDetailsDialog from "@/components/BookDetailsDialog";
 
 export default {
-  components: { VPagination },
+  components: { BookDetailsDialog, VPagination },
   data() {
     return {
       query: null,

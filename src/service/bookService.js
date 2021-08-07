@@ -9,7 +9,7 @@
  * @property {string} title - title of books
  * @property {string} description - description of books
  * @property {ImageBook} images _images
- * @property {Array<string>} authors authors
+ * @property {string} authors authors
  */
 
 /**
@@ -22,7 +22,7 @@ const parseBooks = (books) => {
     return {
       title: volumeInfo.title,
       description: volumeInfo.description || "No description",
-      authors: volumeInfo.authors || [],
+      authors: (volumeInfo.authors || []).join(", "),
       images: {
         small: volumeInfo.imageLinks && volumeInfo.imageLinks.smallThumbnail,
         normal: volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail,
