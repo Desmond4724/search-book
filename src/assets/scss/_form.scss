@@ -1,0 +1,34 @@
+.form-controller {
+  margin-bottom: 15px;
+}
+
+.form-input {
+  border: 1px solid rgb(229, 231, 235);
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 45px;
+  border-radius: 10px;
+  font-weight: bold;
+
+  &:focus,
+  &:active {
+    outline: none;
+  }
+
+  &-invalid {
+    border-color: var(--danger);
+    color: var(--danger)
+  }
+}
+
+
+.message {
+  font-size: 0.9rem;
+  display: inline-block;
+  min-height: 1rem;
+  margin-bottom: 0.5rem;
+  &-error {
+    color: var(--danger)
+  }
+}
