@@ -1,6 +1,6 @@
 <template>
   <teleport to="body" v-if="modelValue">
-    <div class="v-dialog">
+    <div class="v-dialog" data-test="dialog-wrap">
       <div class="v-dialog__backdrop" @click="close"></div>
       <div class="v-dialog__container">
         <button @click="close" class="v-dialog__closer">&times;</button>

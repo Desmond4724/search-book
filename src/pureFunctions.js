@@ -7,5 +7,5 @@ export const queryToUrl = (obj) => {
   Object.keys(obj).forEach((item) => {
     query += item + "=" + obj[item] + "&";
   });
-  return query;
+  return query.substr(0, query.length - 1);
 };
