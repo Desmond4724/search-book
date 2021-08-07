@@ -14,37 +14,9 @@
           class="search__input"
         />
       </div>
-      <div class="search__table__wrapper">
-        <table class="search__table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Author of the book</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              @click="$refs.bookDetailsDialogRef.open(row)"
-              v-for="row in result.items"
-              :key="row.id"
-            >
-              <td class="search__table__cell-img">
-                <img
-                  v-if="row.images.small"
-                  class="search__table__img"
-                  :src="row.images.small"
-                  alt=""
-                />
-              </td>
-              <td>{{ row.title }}</td>
-              <td>
-                {{ row.authors }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <BookTable
+        :items="result.items"
+      ></BookTable>
       <v-pagination
         v-if="pageLength > 1"
         @update:modelValue="onChangePage"
@@ -53,7 +25,6 @@
       ></v-pagination>
     </div>
   </div>
-  <BookDetailsDialog ref="bookDetailsDialogRef"></BookDetailsDialog>
 </template>
 
 <script>
@@ -61,9 +32,9 @@ import "./style.scss";
 import { getBooks } from "@/repository";
 import VPagination from "@/components/ui/VPagination/VPagination";
 import { parseJsonDataFromGoogle } from "@/service/bookService";
-import BookDetailsDialog from "@/components/search/BookDetailsDialog";
 import { ref } from "vue";
 import useKeyDown from "@/use/useKeydown";
+import BookTable from "@/components/search/BookTable";
 
 export default {
   setup() {
@@ -83,7 +54,7 @@ export default {
       searchRefInput,
     };
   },
-  components: { BookDetailsDialog, VPagination },
+  components: { BookTable, VPagination },
   data() {
     return {
       query: null,
@@ -133,7 +104,7 @@ export default {
     },
   },
   created() {
-    this.getBooks();
+    // this.getBooks();
   },
 };
 </script>
