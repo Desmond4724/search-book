@@ -6,6 +6,14 @@ const routes = [
     name: "login",
     component: () => import("../views/login/login"),
   },
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("../views/search/search"),
+    meta: {
+      needAuthorize: true,
+    },
+  }
 ];
 
 const router = createRouter({
