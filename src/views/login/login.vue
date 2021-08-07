@@ -46,6 +46,7 @@ export default {
       try {
         await login(this.token);
         this.$user.setToken(this.token);
+        await this.$router.push({ name: "search" });
       } catch (e) {
         this.error = e.message;
       } finally {
