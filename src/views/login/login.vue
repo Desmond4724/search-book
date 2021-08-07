@@ -20,7 +20,7 @@
           />
           <span class="message message-error">{{ error }}</span>
         </div>
-        <v-btn :loading="loading">Login</v-btn>
+        <v-btn class="w-100" :loading="loading">Login</v-btn>
       </form>
     </div>
   </div>
