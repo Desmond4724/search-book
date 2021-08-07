@@ -17,12 +17,14 @@
  * @returns {Array<Book>}
  */
 const parseBooks = (books) => {
+  if(!books) books = []
   return books.map((item) => {
     const { volumeInfo } = item;
     return {
       title: volumeInfo.title,
       description: volumeInfo.description || "No description",
       authors: (volumeInfo.authors || []).join(", "),
+      // todo need placeholder image if not images
       images: {
         small: volumeInfo.imageLinks && volumeInfo.imageLinks.smallThumbnail,
         normal: volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail,

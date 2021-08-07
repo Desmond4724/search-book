@@ -3,56 +3,54 @@
     <div class="linear-activity" v-show="loading">
       <div class="indeterminate"></div>
     </div>
-    <div class="search__wrapper">
-      <div class="search__inner">
-        <div class="search__input__wrapper">
-          <input
-            ref="searchRefInput"
-            @input="search"
-            v-model="query"
-            placeholder="Search pres(/)"
-            type="text"
-            class="search__input"
-          />
-        </div>
-        <div class="search__table__wrapper">
-          <table class="search__table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Author of the book</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                @click="$refs.bookDetailsDialogRef.open(row)"
-                v-for="row in result.items"
-                :key="row.id"
-              >
-                <td class="search__table__cell-img">
-                  <img
-                    v-if="row.images.small"
-                    class="search__table__img"
-                    :src="row.images.small"
-                    alt=""
-                  />
-                </td>
-                <td>{{ row.title }}</td>
-                <td>
-                  {{ row.authors }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <v-pagination
-          v-if="pageLength > 1"
-          @update:modelValue="onChangePage"
-          v-model="page"
-          :length="pageLength"
-        ></v-pagination>
+    <div class="search__inner">
+      <div class="search__input__wrapper">
+        <input
+          ref="searchRefInput"
+          @input="search"
+          v-model="query"
+          placeholder="Search pres(/)"
+          type="text"
+          class="search__input"
+        />
       </div>
+      <div class="search__table__wrapper">
+        <table class="search__table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Author of the book</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              @click="$refs.bookDetailsDialogRef.open(row)"
+              v-for="row in result.items"
+              :key="row.id"
+            >
+              <td class="search__table__cell-img">
+                <img
+                  v-if="row.images.small"
+                  class="search__table__img"
+                  :src="row.images.small"
+                  alt=""
+                />
+              </td>
+              <td>{{ row.title }}</td>
+              <td>
+                {{ row.authors }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <v-pagination
+        v-if="pageLength > 1"
+        @update:modelValue="onChangePage"
+        v-model="page"
+        :length="pageLength"
+      ></v-pagination>
     </div>
   </div>
   <BookDetailsDialog ref="bookDetailsDialogRef"></BookDetailsDialog>
@@ -104,8 +102,13 @@ export default {
     async onChangePage() {
       await this.$nextTick();
       await this.getBooks();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     },
     search() {
+      this.page = 1
       this.getBooks();
     },
 
