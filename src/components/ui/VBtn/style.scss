@@ -45,3 +45,29 @@
     transform: rotate(1turn);
   }
 }
+
+
+.btn {
+  height: 50px;
+  min-width: 200px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn:disabled {
+  background: gray;
+}
+

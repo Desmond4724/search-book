@@ -1,0 +1,16 @@
+.login {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  overflow: auto;
+  &__inner {
+    width: 420px;
+    border-radius: 15px;
+    background: var(--secondary);
+    padding: 30px;
+    box-shadow:  20px 20px 60px #0b101a,
+    -20px -20px 60px #172034;
+  }
+}
