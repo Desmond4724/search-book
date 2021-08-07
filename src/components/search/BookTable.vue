@@ -9,6 +9,7 @@
     </thead>
     <tbody v-if="items.length">
       <tr
+        data-test="row"
         @click="$refs.bookDetailsDialogRef.open(row)"
         v-for="row in items"
         :key="row.id"
@@ -27,10 +28,10 @@
         </td>
       </tr>
     </tbody>
-    <tbody>
-    <tr>
-      <td colspan="3">No books</td>
-    </tr>
+    <tbody data-test="no-items" v-else>
+      <tr>
+        <td colspan="3">No books</td>
+      </tr>
     </tbody>
   </table>
   <BookDetailsDialog ref="bookDetailsDialogRef"></BookDetailsDialog>
@@ -44,7 +45,7 @@ import "./book-table.scss";
 export default {
   name: "BookTable",
   components: {
-    BookDetailsDialog
+    BookDetailsDialog,
   },
   props: {
     items: {

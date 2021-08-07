@@ -1,6 +1,6 @@
 <template>
   <ul class="v-pagination">
-    <li v-for="(item, index) in paginationItems" :key="index">
+    <li data-test="item" v-for="(item, index) in paginationItems" :key="index">
       <button
         @click="onInput(item.text)"
         :class="{ active: item.isActive }"

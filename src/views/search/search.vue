@@ -14,9 +14,7 @@
           class="search__input"
         />
       </div>
-      <BookTable
-        :items="result.items"
-      ></BookTable>
+      <BookTable :items="result.items"></BookTable>
       <v-pagination
         v-if="pageLength > 1"
         @update:modelValue="onChangePage"
