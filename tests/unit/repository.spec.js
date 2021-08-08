@@ -1,4 +1,4 @@
-import { isValidToken } from "@/repository";
+import { isValidToken } from "@/pureFunctions";
 
 describe("valid token", () => {
   it("cyrilic symbol should return false ", async () => {

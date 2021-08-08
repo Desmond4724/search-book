@@ -1,12 +1,7 @@
-import { queryToUrl } from "@/pureFunctions";
-
-const API_DELAY = 500;
-
-export const isValidToken = (token) => {
-  return new RegExp("[a-zA-Z]{16,}").test(token);
-};
+import { isValidToken, queryToUrl } from "@/pureFunctions";
 
 export const login = (token) => {
+  const API_DELAY = 3 * 1000;
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (isValidToken(token)) {
