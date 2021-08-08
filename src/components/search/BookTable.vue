@@ -19,7 +19,7 @@
             v-if="row.images.small"
             class="book-table__img"
             :src="row.images.small"
-            alt=""
+            :alt="row.title"
           />
         </td>
         <td>{{ row.title }}</td>
@@ -34,7 +34,10 @@
       </tr>
     </tbody>
   </table>
-  <BookDetailsDialog ref="bookDetailsDialogRef"></BookDetailsDialog>
+  <BookDetailsDialog
+    @setCategory="$emit('setCategory', $event)"
+    ref="bookDetailsDialogRef"
+  ></BookDetailsDialog>
 </template>
 
 <script>

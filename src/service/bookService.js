@@ -10,6 +10,7 @@
  * @property {string} description - description of books
  * @property {ImageBook} images _images
  * @property {string} authors authors
+ * @property {Array<string>} categories
  */
 
 /**
@@ -24,6 +25,7 @@ const parseBooks = (books) => {
       title: volumeInfo.title,
       description: volumeInfo.description || "No description",
       authors: (volumeInfo.authors || []).join(", "),
+      categories: volumeInfo.categories || [],
       // todo need placeholder image if not images
       images: {
         small: volumeInfo.imageLinks && volumeInfo.imageLinks.smallThumbnail,

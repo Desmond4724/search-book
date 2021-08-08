@@ -2,4 +2,17 @@
   &__title {
     padding-right: 20px;
   }
+  &__tag {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px -10px;
+    padding-bottom: 10px;
+    &__item {
+      padding: 5px 10px;
+      color: #8c8cff;
+      &:hover {
+        color: #b6b6f5;
+      }
+    }
+  }
 }

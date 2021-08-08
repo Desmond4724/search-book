@@ -14,7 +14,7 @@
           class="search__input"
         />
       </div>
-      <BookTable :items="result.items"></BookTable>
+      <BookTable @setCategory="setCategory" :items="result.items"></BookTable>
       <v-pagination
         v-if="pageLength > 1"
         @update:modelValue="onChangePage"
@@ -37,7 +37,8 @@ import BookTable from "@/components/search/BookTable";
 export default {
   setup() {
     const searchRefInput = ref(null);
-    const focusToSearchInput = () => {
+    const focusToSearchInput = (e) => {
+      e.preventDefault();
       setTimeout(() => {
         searchRefInput.value.focus();
       });
@@ -68,6 +69,10 @@ export default {
     };
   },
   methods: {
+    setCategory(category) {
+      this.query = category;
+      this.search();
+    },
     async onChangePage() {
       await this.$nextTick();
       await this.getBooks();
@@ -102,7 +107,7 @@ export default {
     },
   },
   created() {
-    // this.getBooks();
+    this.getBooks();
   },
 };
 </script>
